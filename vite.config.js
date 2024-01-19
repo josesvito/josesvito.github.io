@@ -7,7 +7,7 @@ console.log(`Environment: ${process.env.NODE_ENV}`)
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: isProduction ? '/josesvito.github.io/' : '/',
+  base: '/',
   plugins: [vue()],
   resolve: {
     alias: {
