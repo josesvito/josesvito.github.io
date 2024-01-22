@@ -1,6 +1,6 @@
 <template>
   <div class="znim-bg d-flex vh-100">
-    <div class="m-auto p-2">
+    <div class="container-md m-auto">
       <h1 class="text-light text-md-start text-center">0nymous Generate HMAC</h1>
       <form class="znim-glass-light p-3 rounded" @submit.prevent @submit="generateHmac(superSecret, secret, apiKey)">
         <div class="row g-2">
@@ -17,7 +17,7 @@
             <input type="submit" class="btn btn-primary w-100">
           </div>
           <div class="w-100 position-relative">
-            <div class="form-control text-center">{{ result ?? "AUTH KEY HERE" }}</div>
+            <div class="form-control znim-box-result">{{ result ?? "AUTH KEY HERE" }}</div>
             <button type="button" @click="copy" class="btn position-absolute top-0 end-0 me-1">
               <fawesome-pro icon="copy" variant="fal" />
             </button>
@@ -72,5 +72,15 @@ const result = ref();
 }
 .znim-glass-light {
   background: linear-gradient(45deg, #fff6, #fff6);
+}
+.znim-box-result {
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
 }
 </style>
