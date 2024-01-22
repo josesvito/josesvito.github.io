@@ -33,7 +33,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import './assets/css/style.css'
+import '@/assets/css/style.css'
 
 defineProps({
   msg: String,
