@@ -26,7 +26,7 @@
         </div>
       </form>
       <center>
-        <small class="text-center text-white">Copyright &copy; {{ new Date().getFullYear() }} 0nymous. All rights reserved.</small>
+        <small class="text-center text-white">Copyright &copy; {{ new Date().getFullYear() }} <router-link to="/hello" target="_blank">0nymous</router-link>. All rights reserved.</small>
       </center>
     </div>
   </div>

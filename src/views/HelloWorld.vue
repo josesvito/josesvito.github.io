@@ -31,7 +31,7 @@
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import '@/assets/css/style.css'
 
