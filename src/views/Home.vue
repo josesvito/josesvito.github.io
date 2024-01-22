@@ -18,9 +18,10 @@
           </div>
           <div class="w-100 position-relative">
             <div class="form-control text-center">{{ result ?? "AUTH KEY HERE" }}</div>
-            <button class="btn position-absolute top-0 end-0 me-1">
+            <button type="button" @click="copy" class="btn position-absolute top-0 end-0 me-1">
               <fawesome-pro icon="copy" variant="fal" />
             </button>
+            <small class="text-end text-success" :class="showCopy ? 'd-block' : 'd-none'">Copied!</small>
           </div>
         </div>
       </form>
@@ -48,6 +49,17 @@ const generateHmac = async (superSecret: string, secret: string, apiKey: string)
   result.value = await Crypto.createHMAC(secret, message);
 }
 
+const copy = () => {
+  if (result.value) {
+    navigator.clipboard.writeText(result.value);
+    showCopy.value = true;
+    clearTimeout(showCopyTimeout.value);
+    showCopyTimeout.value = setTimeout(() => showCopy.value = false, 5000)
+  }
+}
+
+const showCopyTimeout = ref();
+const showCopy = ref(false);
 const superSecret = ref("juene");
 const secret = ref();
 const apiKey = ref();
