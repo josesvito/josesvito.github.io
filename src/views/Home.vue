@@ -1,27 +1,39 @@
 <template>
-  <!-- <CModal alignment="center" :visible="modalVisibility" @close="modalVisibility = false">
-    <CModalHeader :close-button="true">
-      <CModalTitle>{{  }}</CModalTitle>
-    </CModalHeader>
-    <CModalBody>
-      WADAW
-    </CModalBody>
-    <CModalFooter>
-      punten
-    </CModalFooter>
-  </CModal> -->
-  <form @submit.prevent @submit="generateHmac(superSecret, secret, apiKey)">
-    <input type="text" class="form-control" placeholder="Secret's secret" v-model="superSecret">
-    <input type="text" class="form-control" placeholder="Secret" v-model="secret">
-    <input type="text" class="form-control" placeholder="API KEY" v-model="apiKey">
-    <input type="submit" class="btn btn-submit">
-  </form>
-  <div>{{ result }}</div>
+  <div class="znim-bg d-flex vh-100">
+    <div class="m-auto p-2">
+      <h1 class="text-light text-md-start text-center">0nymous Generate HMAC</h1>
+      <form class="znim-glass-light p-3 rounded" @submit.prevent @submit="generateHmac(superSecret, secret, apiKey)">
+        <div class="row g-2">
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Secret's secret" v-model="superSecret">
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Secret" v-model="secret">
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="API KEY" v-model="apiKey">
+          </div>
+          <div class="w-100">
+            <input type="submit" class="btn btn-primary w-100">
+          </div>
+          <div class="w-100 position-relative">
+            <div class="form-control text-center">{{ result ?? "AUTH KEY HERE" }}</div>
+            <button class="btn position-absolute top-0 end-0 me-1">
+              <fawesome-pro icon="copy" variant="fal" />
+            </button>
+          </div>
+        </div>
+      </form>
+      <center>
+        <small class="text-center text-white">Copyright &copy; {{ new Date().getFullYear() }} 0nymous. All rights reserved.</small>
+      </center>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import '@coreui/coreui/dist/css/coreui.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '@coreui/coreui/dist/css/coreui.min.css'
 import { Crypto } from "@/_helpers";
 import { ref } from "vue";
 
@@ -35,9 +47,18 @@ const generateHmac = async (superSecret: string, secret: string, apiKey: string)
   const message = superSecret + `${apiKey}:${getTimestamp()}`;
   result.value = await Crypto.createHMAC(secret, message);
 }
-  
+
 const superSecret = ref("juene");
 const secret = ref();
 const apiKey = ref();
 const result = ref();
 </script>
+
+<style scoped>
+.znim-bg {
+  background: linear-gradient(45deg, #000, #333);
+}
+.znim-glass-light {
+  background: linear-gradient(45deg, #fff6, #fff6);
+}
+</style>

@@ -16,7 +16,6 @@ library.add(fas)
 // import '@coreui/coreui/dist/css/coreui.min.css'
 import './assets/css/font-icon.css'
 import './assets/css/all.css'
-import './assets/css/style.css'
 
 /* eslint-disable */
 // @ts-ignore
